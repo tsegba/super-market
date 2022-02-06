@@ -4,8 +4,8 @@ import com.example.demo.model.*;
 
 public class ShelfBuilder {
 
-    public IShelft build(ShelftType type){
-        switch (type){
+    public IShelft build(ShelftType type) {
+        switch (type) {
             case A:
                 return new ShelftA();
             case B:

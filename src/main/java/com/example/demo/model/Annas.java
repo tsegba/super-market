@@ -1,8 +1,8 @@
 package com.example.demo.model;
 
-public class Annas extends  Product{
+public class Annas extends Product {
 
-    public Annas(){
+    public Annas() {
         super("No more Annas");
     }
 

@@ -2,8 +2,8 @@ package com.example.demo;
 
 import com.example.demo.model.IShelft;
 import com.example.demo.model.ShelftB;
-import com.example.demo.service.ShelfBuilder;
 import com.example.demo.model.ShelftType;
+import com.example.demo.service.ShelfBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

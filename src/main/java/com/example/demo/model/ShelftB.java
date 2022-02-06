@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
-public class ShelftB  implements IShelft{
-    private ShelftType type ;
+public class ShelftB implements IShelft {
+    private ShelftType type;
 
     public ShelftB() {
         this.type = ShelftType.B;

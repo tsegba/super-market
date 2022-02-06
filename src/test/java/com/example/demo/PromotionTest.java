@@ -1,6 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.model.*;
+import com.example.demo.model.Annas;
+import com.example.demo.model.Apple;
 import com.example.demo.service.IPromotion;
 import com.example.demo.service.InvalidPromotion;
 import com.example.demo.service.Reduction2Euro;
@@ -19,12 +20,12 @@ public class PromotionTest {
     private final ByteArrayOutputStream systemOut = new ByteArrayOutputStream();
 
     @BeforeEach
-    private void setUp(){
+    private void setUp() {
         System.setOut(new PrintStream(systemOut));
     }
 
     @Test
-    public void whenMakePromotion2EuroOnAppleWithPrice7EuroThenPriceWillBe5Euro(){
+    public void whenMakePromotion2EuroOnAppleWithPrice7EuroThenPriceWillBe5Euro() {
         Apple apple = new Apple();
         IPromotion promotion = new Reduction2Euro();
 
@@ -35,7 +36,7 @@ public class PromotionTest {
     }
 
     @Test
-    public void whenMakePromotion5PercentOnAppleWithPrice7EuroThenPriceWillBe6_65Euro(){
+    public void whenMakePromotion5PercentOnAppleWithPrice7EuroThenPriceWillBe6_65Euro() {
         Apple apple = new Apple();
         IPromotion promotion = new Reduction5Percent();
 
@@ -44,8 +45,9 @@ public class PromotionTest {
 
         assertThat(apple.getPrice()).isEqualTo(6.65);
     }
+
     @Test
-    public void whenMakePromotion5PercentAndPromotion2EuroOnAppleWithPrice20EuroThenPriceWillBe17Euro(){
+    public void whenMakePromotion5PercentAndPromotion2EuroOnAppleWithPrice20EuroThenPriceWillBe17Euro() {
         Apple apple = new Apple(20);
         IPromotion promotionOne = new Reduction5Percent();
         IPromotion promotionTwo = new Reduction2Euro();
@@ -55,8 +57,9 @@ public class PromotionTest {
 
         assertThat(apple.getPrice()).isEqualTo(17);
     }
+
     @Test
-    public void whenMakePromotion2EuroAndPromotion5PercentOnAppleWithPrice20EuroThenPriceWillBe17point1Euro(){
+    public void whenMakePromotion2EuroAndPromotion5PercentOnAppleWithPrice20EuroThenPriceWillBe17point1Euro() {
         Apple apple = new Apple(20);
         IPromotion promotionOne = new Reduction5Percent();
         IPromotion promotionTwo = new Reduction2Euro();
@@ -66,23 +69,29 @@ public class PromotionTest {
 
         assertThat(apple.getPrice()).isEqualTo(17.1);
     }
+
     @Test
-    public void whenMakePromotion2EuroOnAppleWithPrice2EuroThenThrowInvalidPromotion(){
+    public void whenMakePromotion2EuroOnAppleWithPrice2EuroThenThrowInvalidPromotion() {
         Apple apple = new Apple(2);
         IPromotion promotion = new Reduction2Euro();
 
-        assertThrows(InvalidPromotion.class, () -> { apple.setPromotion(promotion);  });
+        assertThrows(InvalidPromotion.class, () -> {
+            apple.setPromotion(promotion);
+        });
     }
+
     @Test
-    public void whenMakePromotion2EuroOnAppleWithPrice1EuroThenThrowInvalidPromotion(){
+    public void whenMakePromotion2EuroOnAppleWithPrice1EuroThenThrowInvalidPromotion() {
         Apple apple = new Apple(1);
         IPromotion promotion = new Reduction2Euro();
 
-        assertThrows(InvalidPromotion.class, () -> { apple.setPromotion(promotion);  });
+        assertThrows(InvalidPromotion.class, () -> {
+            apple.setPromotion(promotion);
+        });
     }
 
     @Test
-    public void whenMakePromotion5PercentOnAnnasWithPrice7EuroThenPriceWillBe6_65Euro(){
+    public void whenMakePromotion5PercentOnAnnasWithPrice7EuroThenPriceWillBe6_65Euro() {
         Annas annas = new Annas(7);
         IPromotion promotion = new Reduction5Percent();
         annas.setPromotion(promotion);

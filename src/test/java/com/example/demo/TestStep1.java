@@ -3,7 +3,6 @@ package com.example.demo;
 import com.example.demo.model.Apple;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -17,13 +16,13 @@ public class TestStep1 {
     Apple apple;
 
     @BeforeEach
-    private void setUp(){
+    private void setUp() {
         System.setOut(new PrintStream(systemOut));
     }
 
     @Test
     @DisplayName("Display message when quantity is set to zero")
-    public void displayMessageWhenQuatityIsSetToZero(){
+    public void displayMessageWhenQuatityIsSetToZero() {
         apple = new Apple();
         apple.setQuantity(0);
         assertThat(systemOut.toString()).isEqualTo("No more Apples");

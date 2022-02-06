@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.service.IPromotion;
-
 public class Reduction5Percent implements IPromotion {
 
     @Override

@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import java.util.Objects;
 
-public class ShelftC implements IShelft{
+public class ShelftC implements IShelft {
     private ShelftType type;
 
     public ShelftC() {
