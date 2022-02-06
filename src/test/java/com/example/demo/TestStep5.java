@@ -89,12 +89,15 @@ public class TestStep5 {
     }
 
     @Test
-    public void whenMakePromotion5PercentOnAnnasWithPrice7EuroThenPriceWillBe6_65Euro() {
-        Annas annas = new Annas(7);
+    public void whenMakePromotion5PercentOnAnnasThenPriceWillBe47_5Euro() {
+        Annas annas = new Annas();
+
+        assertThat(annas.getPrice()).isEqualTo(50);
+
         IPromotion promotion = new Reduction5Percent();
         annas.setPromotion(promotion);
 
-        assertThat(annas.getPrice()).isEqualTo(6.65);
+        assertThat(annas.getPrice()).isEqualTo(47.5);
     }
 
 
