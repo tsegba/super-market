@@ -8,10 +8,13 @@ public class Apple extends Product {
 
     public Apple() {
         super("No more Apples");
+        this.setPrice(25);
+        this.setQuantity(50);
     }
 
     public Apple(double price) {
         super("No more Apples");
+        this.setQuantity(50);
         setPrice(price);
     }
 
