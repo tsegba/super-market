@@ -2,10 +2,8 @@ package com.example.demo;
 
 import com.example.demo.model.Annas;
 import com.example.demo.model.Apple;
-import com.example.demo.service.IPromotion;
-import com.example.demo.service.InvalidPromotion;
-import com.example.demo.service.Reduction2Euro;
-import com.example.demo.service.Reduction5Percent;
+import com.example.demo.model.Peach;
+import com.example.demo.service.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -35,70 +33,74 @@ public class TestStep5 {
     }
 
     @Test
-    public void whenMakePromotion5PercentToAppleThenPriceWillBe23_75Euro() {
+    public void whenMakePromotion50PercentToAppleThenPriceWillBe12_5Euro() {
         Apple apple = new Apple();
-        IPromotion promotion = new Reduction5Percent();
+        IPromotion promotion = new Reduction50Percent();
 
         apple.setPromotion(promotion);
 
-        assertThat(apple.getPrice()).isEqualTo(23.75);
+        assertThat(apple.getPrice()).isEqualTo(12.5);
     }
 
     @Test
-    public void whenMakePromotion5PercentAndPromotion2EuroToAppleThenPriceWillBe21_75Euro() {
+    public void whenMakePromotion50PercentAndPromotion2EuroToAppleThenPriceWillBe10_5Euro() {
         Apple apple = new Apple();
-        IPromotion promotionOne = new Reduction5Percent();
+        IPromotion promotionOne = new Reduction50Percent();
         IPromotion promotionTwo = new Reduction2Euro();
 
         apple.setPromotion(promotionOne);
         apple.setPromotion(promotionTwo);
 
-        assertThat(apple.getPrice()).isEqualTo(21.75);
+        assertThat(apple.getPrice()).isEqualTo(10.5);
     }
 
     @Test
-    public void whenMakePromotion2EuroAndPromotion5PercentToAppleThenPriceWillBe21_85point1Euro() {
+    public void whenMakePromotion2EuroAndPromotion50PercentToAppleThenPriceWillBe11_5point1Euro() {
         Apple apple = new Apple();
-        IPromotion promotionOne = new Reduction5Percent();
-        IPromotion promotionTwo = new Reduction2Euro();
+        IPromotion promotionNormal = new Reduction2Euro();
+        IPromotion promotionSuperVoucher = new Reduction50Percent();
 
-        apple.setPromotion(promotionTwo);
-        apple.setPromotion(promotionOne);
+        apple.setPromotion(promotionNormal);
+        apple.setPromotion(promotionSuperVoucher);
 
-        assertThat(apple.getPrice()).isEqualTo(21.85);
+        assertThat(apple.getPrice()).isEqualTo(11.5);
     }
 
     @Test
-    public void whenMakePromotion2EuroOnAppleWithPrice2EuroThenThrowInvalidPromotion() {
-        Apple apple = new Apple(2);
-        IPromotion promotion = new Reduction2Euro();
+    public void whenMake2PromotionSuperVoucherToAppleThePriceWillBe6_25() {
+        Apple apple = new Apple();
+        IPromotion promotionSuperVoucher = new Reduction50Percent();
+        IPromotion promotionSuperVoucher2 = new Reduction50Percent();
+        apple.setPromotion(promotionSuperVoucher);
+        apple.setPromotion(promotionSuperVoucher2);
+        assertThat(apple.getPrice()).isEqualTo(6.25);
 
-        assertThrows(InvalidPromotion.class, () -> {
-            apple.setPromotion(promotion);
-        });
     }
 
-    @Test
-    public void whenMakePromotion2EuroOnAppleWithPrice1EuroThenThrowInvalidPromotion() {
-        Apple apple = new Apple(1);
-        IPromotion promotion = new Reduction2Euro();
 
-        assertThrows(InvalidPromotion.class, () -> {
-            apple.setPromotion(promotion);
-        });
-    }
+
 
     @Test
-    public void whenMakePromotion5PercentOnAnnasThenPriceWillBe47_5Euro() {
+    public void whenMakePromotion50PercentOnAnnasThenPriceWillBe25Euro() {
         Annas annas = new Annas();
 
         assertThat(annas.getPrice()).isEqualTo(50);
 
-        IPromotion promotion = new Reduction5Percent();
+        IPromotion promotion = new Reduction50Percent();
         annas.setPromotion(promotion);
 
-        assertThat(annas.getPrice()).isEqualTo(47.5);
+        assertThat(annas.getPrice()).isEqualTo(25);
     }
 
+    @Test
+    public void whenMakePromotion50PercentOnPeachThenPriceWillBe15Euro() {
+        Peach peach = new Peach();
 
+        assertThat(peach.getPrice()).isEqualTo(30);
+
+        IPromotion promotion = new Reduction50Percent();
+        peach.setPromotion(promotion);
+
+        assertThat(peach.getPrice()).isEqualTo(15);
+    }
 }

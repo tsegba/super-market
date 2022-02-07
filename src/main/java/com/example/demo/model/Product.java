@@ -39,8 +39,8 @@ public class Product {
     public void setPromotion(IPromotion promotion) {
         if (promotion == null) return;
         this.promotion = promotion;
-        double promotionValue = promotion.getPromotion(this.price);
-        if (promotionValue >= this.price) {
+        double promotionValue = promotion.getPromotion(this.getPrice());
+        if (promotionValue >= this.getPrice()) {
             throw new InvalidPromotion("can't apply this promotion that product");
         }
         this.setPrice(this.getPrice() - promotionValue);

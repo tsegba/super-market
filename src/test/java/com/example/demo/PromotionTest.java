@@ -40,7 +40,6 @@ public class PromotionTest {
         Apple apple = new Apple();
         IPromotion promotion = new Reduction5Percent();
 
-        apple.setPrice(7);
         apple.setPromotion(promotion);
 
         assertThat(apple.getPrice()).isEqualTo(6.65);

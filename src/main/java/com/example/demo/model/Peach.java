@@ -7,4 +7,6 @@ public class Peach extends Product {
         this.setPrice(30);
         this.setQuantity(30);
     }
+
+
 }
