@@ -14,7 +14,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestStep5 {
-/*
+
     private final ByteArrayOutputStream systemOut = new ByteArrayOutputStream();
 
     @BeforeEach
@@ -23,84 +23,122 @@ public class TestStep5 {
     }
 
     @Test
-    public void whenMakePromotion2EuroToAppleWithThenPriceWillBe23Euro() {
+    public void whenMakePay10AppleWithoutPromotionThenTheQuantityWillBe40() {
         Apple apple = new Apple();
-        IPromotion promotion = new Reduction2Euro();
 
-        apple.setPromotion(promotion);
+        apple.pay(10,null);
+
+        assertThat(apple.getQuantity()).isEqualTo(40);
+    }
+
+    @Test
+    public void whenMakePay60AppleWithoutPromotionThenThrowException() {
+        Apple apple = new Apple();
+
+        assertThrows(IllegalArgumentException.class, () -> { apple.pay(60,null); });
+    }
+
+    @Test
+    public void whenMakePay10AppleWithoutPromotionThenThePriceIs25() {
+        Apple apple = new Apple();
+
+        apple.pay(10,null);
+
+        assertThat(apple.getPrice()).isEqualTo(25);
+    }
+
+    @Test
+    public void whenMakePay10AppleWithNormalVoucherThenThePriceIs23() {
+        Apple apple = new Apple();
+        IPromotion normalVoucher = new Reduction2Euro();
+
+        apple.pay(10,normalVoucher);
 
         assertThat(apple.getPrice()).isEqualTo(23);
     }
 
+
     @Test
-    public void whenMakePromotion50PercentToAppleThenPriceWillBe12_5Euro() {
+    public void whenMakePay50AppleWithSuperVoucherThenThePriceIs12_5() {
         Apple apple = new Apple();
-        IPromotion promotion = new Reduction50Percent();
+        IPromotion superVoucher = new Reduction50Percent();
 
-        apple.setPromotion(promotion);
+        apple.pay(50,superVoucher);
 
+        assertThat(systemOut.toString()).isEqualTo("No more Apples");
         assertThat(apple.getPrice()).isEqualTo(12.5);
     }
 
     @Test
-    public void whenMakePromotion50PercentAndPromotion2EuroToAppleThenPriceWillBe10_5Euro() {
+    public void whenMakePay5AppleWithSuperVoucherThenThePriceIs12_5andTheQuantityWillBe45() {
         Apple apple = new Apple();
-        IPromotion promotionOne = new Reduction50Percent();
-        IPromotion promotionTwo = new Reduction2Euro();
+        IPromotion superVoucher = new Reduction50Percent();
 
-        apple.setPromotion(promotionOne);
-        apple.setPromotion(promotionTwo);
+        apple.pay(5,superVoucher);
 
-        assertThat(apple.getPrice()).isEqualTo(10.5);
+        assertThat(apple.getQuantity()).isEqualTo(45);
+        assertThat(apple.getPrice()).isEqualTo(12.5);
     }
 
     @Test
-    public void whenMakePromotion2EuroAndPromotion50PercentToAppleThenPriceWillBe11_5point1Euro() {
+    public void whenMakePay5AppleWithNormalVoucherThenThePriceIs23andTheQuantityWillBe45() {
         Apple apple = new Apple();
-        IPromotion promotionNormal = new Reduction2Euro();
-        IPromotion promotionSuperVoucher = new Reduction50Percent();
-
-        apple.setPromotion(promotionNormal);
-        apple.setPromotion(promotionSuperVoucher);
-
-        assertThat(apple.getPrice()).isEqualTo(11.5);
-    }
-
-    @Test
-    public void whenMake2PromotionSuperVoucherToAppleThePriceWillBe6_25() {
-        Apple apple = new Apple();
-        IPromotion promotionSuperVoucher = new Reduction50Percent();
-        IPromotion promotionSuperVoucher2 = new Reduction50Percent();
-        apple.setPromotion(promotionSuperVoucher);
-        apple.setPromotion(promotionSuperVoucher2);
-        assertThat(apple.getPrice()).isEqualTo(6.25);
-
+        IPromotion superVoucher = new Reduction2Euro();
+        apple.pay(5,superVoucher);
+        assertThat(apple.getQuantity()).isEqualTo(45);
+        assertThat(apple.getPrice()).isEqualTo(23);
     }
 
 
-
-
+    /*
+    Annas test
+     */
     @Test
-    public void whenMakePromotion50PercentOnAnnasThenPriceWillBe25Euro() {
+    public void whenMakePay10AnnasWithNormalVoucherThenThePriceWillBe48() {
         Annas annas = new Annas();
+        IPromotion normalVoucher = new Reduction2Euro();
 
-        assertThat(annas.getPrice()).isEqualTo(50);
+        annas.pay(10,normalVoucher);
 
-        IPromotion promotion = new Reduction50Percent();
-        annas.setPromotion(promotion);
+        assertThat(annas.getPrice()).isEqualTo(48);
+    }
 
+    @Test
+    public void whenMakePay80AppleWithoutPromotionThenThrowException() {
+        Apple apple = new Apple();
+
+        assertThrows(IllegalArgumentException.class, () -> { apple.pay(80,null); });
+    }
+
+    @Test
+    public void whenMakePay75AnnasWithSuperVoucherThenThePriceIs25() {
+        Annas annas = new Annas();
+        IPromotion superVoucher = new Reduction50Percent();
+
+        annas.pay(75,superVoucher);
+
+        assertThat(systemOut.toString()).isEqualTo("No more annas");
         assertThat(annas.getPrice()).isEqualTo(25);
     }
 
     @Test
-    public void whenMakePromotion50PercentOnPeachThenPriceWillBe15Euro() {
-        Peach peach = new Peach();
+    public void whenMakePay5AnnasWithSuperVoucherThenThePriceIs25andTheQuantityWillBe70() {
+        Annas annas = new Annas();
+        IPromotion superVoucher = new Reduction50Percent();
 
-        assertThat(peach.getPrice()).isEqualTo(30);
+        annas.pay(5,superVoucher);
 
-        IPromotion promotion = new Reduction50Percent();
-        peach.setPromotion(promotion);
+        assertThat(annas.getQuantity()).isEqualTo(70);
+        assertThat(annas.getPrice()).isEqualTo(25);
+    }
 
-        assertThat(peach.getPrice()).isEqualTo(15);
-    }*/
+    @Test
+    public void whenMakePay5AnnasWithNormalVoucherThenThePriceIs48andTheQuantityWillBe70() {
+        Annas annas = new Annas();
+        IPromotion superVoucher = new Reduction2Euro();
+        annas.pay(5,superVoucher);
+        assertThat(annas.getQuantity()).isEqualTo(70);
+        assertThat(annas.getPrice()).isEqualTo(48);
+    }
+
 }
