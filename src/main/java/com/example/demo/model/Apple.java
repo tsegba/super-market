@@ -3,33 +3,31 @@ package com.example.demo.model;
 import com.example.demo.service.IPromotion;
 import com.example.demo.service.InvalidPromotion;
 
-public class Apple extends Product {
-    private IPromotion promotion;
+public class Apple  {
+    private double price;
+    private int quantity;
 
     public Apple() {
-        super("No more Apples");
-        this.setPrice(25);
-        this.setQuantity(50);
+        this.price = 25;
+        this.quantity = 50;
     }
 
-    public Apple(double price) {
-        super("No more Apples");
-        this.setQuantity(50);
-        setPrice(price);
+    public double getPrice() {
+        return price;
     }
 
-    public IPromotion getPromotion() {
-        return promotion;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public void setPromotion(IPromotion promotion) {
-        if (promotion == null) return;
-        this.promotion = promotion;
-        double promotionValue = promotion.getPromotion(super.getPrice());
-        if (promotionValue >= super.getPrice()) {
-            throw new InvalidPromotion("can't apply this promotion that product");
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        if (quantity==0){
+            System.out.print("No more Apples");
         }
-        this.setPrice(this.getPrice() - promotionValue);
+        this.quantity = quantity;
     }
-
 }
