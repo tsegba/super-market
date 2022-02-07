@@ -1,12 +1,13 @@
 package com.example.demo.model;
 
-public class Peach extends Product {
+public class Peach extends  Product {
+
+    private double price;
+    private int quantity;
 
     public Peach() {
-        super("No more Annas");
-        this.setPrice(30);
-        this.setQuantity(30);
+        super(25,50);
+        this.setMessage("No more peaches");
     }
-
 
 }

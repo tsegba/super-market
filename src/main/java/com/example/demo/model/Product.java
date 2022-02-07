@@ -5,12 +5,14 @@ import com.example.demo.service.InvalidPromotion;
 
 public class Product {
     private int quantity;
-    private IPromotion promotion;
     private double price;
     private String message;
 
-    public Product(String message) {
-        this.message = message;
+
+
+    public Product( double price,int initialStock) {
+        this.quantity = initialStock;
+        this.price = price;
     }
 
     public int getQuantity() {
@@ -32,18 +34,11 @@ public class Product {
         this.price = price;
     }
 
-    public IPromotion getPromotion() {
-        return promotion;
+    public String getMessage() {
+        return message;
     }
 
-    public void setPromotion(IPromotion promotion) {
-        if (promotion == null) return;
-        this.promotion = promotion;
-        double promotionValue = promotion.getPromotion(this.getPrice());
-        if (promotionValue >= this.getPrice()) {
-            throw new InvalidPromotion("can't apply this promotion that product");
-        }
-        this.setPrice(this.getPrice() - promotionValue);
+    public void setMessage(String message) {
+        this.message = message;
     }
-
 }

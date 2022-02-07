@@ -24,6 +24,6 @@ public class TestStep3 {
     public void displayMessageWhenQuatityIsSetToZero() {
         peach = new Peach();
         peach.setQuantity(0);
-        assertThat(systemOut.toString()).isEqualTo("No more Annas");
+        assertThat(systemOut.toString()).isEqualTo("No more peaches");
     }
 }
