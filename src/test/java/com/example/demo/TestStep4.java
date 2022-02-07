@@ -1,8 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.model.IShelft;
-import com.example.demo.model.ShelftB;
-import com.example.demo.model.ShelftType;
+import com.example.demo.model.*;
 import com.example.demo.service.ShelfBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +15,10 @@ public class TestStep4 {
     @Test
     @DisplayName("new instance Shelft A type test")
     public void whenCreateShelftAthenTypewillEqualToTypeA() {
+
         IShelft shelft = new ShelfBuilder().build(ShelftType.A);
+
+        assertThat(shelft).isInstanceOf(ShelftA.class);
         assertThat(shelft.getType()).isEqualTo(ShelftType.A);
     }
 
@@ -25,6 +26,7 @@ public class TestStep4 {
     @DisplayName("new instance Shelft B type test")
     public void whenCreateShelftBthenTypewillEqualToTypeB() {
         IShelft shelft = new ShelfBuilder().build(ShelftType.B);
+
         assertThat(shelft).isInstanceOf(ShelftB.class);
         assertThat(shelft.getType()).isEqualTo(ShelftType.B);
     }
@@ -33,6 +35,8 @@ public class TestStep4 {
     @DisplayName("new instance Shelft C type test")
     public void whenCreateShelftCthenTypewillEqualToTypeC() {
         IShelft shelft = new ShelfBuilder().build(ShelftType.C);
+
+        assertThat(shelft).isInstanceOf(ShelftC.class);
         assertThat(shelft.getType()).isEqualTo(ShelftType.C);
     }
 }
