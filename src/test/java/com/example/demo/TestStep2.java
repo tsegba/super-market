@@ -24,6 +24,6 @@ public class TestStep2 {
     public void displayMessageWhenQuatityIsSetToZero() {
         aanas = new Annas();
         aanas.setQuantity(0);
-        assertThat(systemOut.toString()).isEqualTo("No more Annas");
+        assertThat(systemOut.toString()).isEqualTo("No more annas");
     }
 }

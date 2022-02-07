@@ -1,8 +1,5 @@
 package com.example.demo.model;
 
-import com.example.demo.service.IPromotion;
-import com.example.demo.service.InvalidPromotion;
-
 public class Apple  {
     private double price;
     private int quantity;

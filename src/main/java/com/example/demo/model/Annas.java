@@ -1,16 +1,33 @@
 package com.example.demo.model;
 
-public class Annas extends Product {
+public class Annas{
+
+    private double price;
+    private int quantity;
 
     public Annas() {
-        super("No more Annas");
-        this.setPrice(50);
-        this.setQuantity(75);
+
+        this.price = 50;
+        this.quantity = 75;
     }
 
-    public Annas(double price) {
-        super("No more Annas");
-        this.setPrice(price);
-        this.setQuantity(75);
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        if (quantity==0){
+            System.out.print("No more annas");
+            return;
+        }
+        this.quantity = quantity;
     }
 }
