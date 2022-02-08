@@ -5,6 +5,7 @@ import com.example.demo.model.*;
 public class ShelfBuilder {
 
     public IShelft build(ShelftType type) {
+        if(type==null) throw new IllegalArgumentException("type must be not null");
         switch (type) {
             case A:
                 return new ShelftA();
